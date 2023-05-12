@@ -4,7 +4,6 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthContext } from "./context/Authcontext";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
