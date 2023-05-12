@@ -3,8 +3,7 @@ import { Alert, Avatar } from "@mui/material";
 import Tilt from "react-parallax-tilt";
 import { useState, useEffect, useRef } from "react";
 import axios from "redaxios";
-import { AuthContext } from "../context/Authcontext";
-
+import { AuthContext } from "../context/AuthContext";
 const PostInput = ({ update }) => {
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const user = useContext(AuthContext).user;

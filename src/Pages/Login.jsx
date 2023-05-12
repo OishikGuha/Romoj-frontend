@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { useRef } from "react";
 import { loginCall } from "../apiCalls";
 import { useContext } from "react";
-import { AuthContext } from "../context/Authcontext";
+import { AuthContext } from "../context/AuthContext";
 import { CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 

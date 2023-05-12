@@ -3,8 +3,7 @@ import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import Rightbar from "../Components/Rightbar";
 import Feed from "../Components/Feed";
-import { AuthContext } from "../context/Authcontext";
-
+import { AuthContext } from "../context/AuthContext";
 const Home = () => {
   const { user } = useContext(AuthContext);
 

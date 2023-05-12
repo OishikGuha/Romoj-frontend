@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import axios from "redaxios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/Authcontext";
+import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 
 const Post = ({ post }) => {

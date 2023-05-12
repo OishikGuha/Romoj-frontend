@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/Authcontext";
+import { AuthContext } from "../context/AuthContext";
 import { useRef } from "react";
 import axios from "redaxios";
 

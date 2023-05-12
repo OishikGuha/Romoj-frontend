@@ -3,8 +3,7 @@ import { Avatar } from "@mui/material";
 import PostInput from "./PostInput";
 import { useState } from "react";
 import axios from "redaxios";
-import { AuthContext } from "../context/Authcontext";
-
+import { AuthContext } from "../context/AuthContext";
 const ProfileMain = ({ username }) => {
   const PF = import.meta.env.VITE_PUBLIC_FOLDER;
   const [user, setUser] = useState({});

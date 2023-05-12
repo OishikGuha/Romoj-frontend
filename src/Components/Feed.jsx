@@ -5,7 +5,7 @@ import Post from "./Post";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "redaxios";
-import { AuthContext } from "../context/Authcontext";
+import { AuthContext } from "../context/AuthContext";
 import { useRef } from "react";
 
 const Feed = ({ username, onlyUser }) => {
