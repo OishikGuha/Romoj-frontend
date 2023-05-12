@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
+import { AuthContext } from "./context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
