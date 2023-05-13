@@ -23,7 +23,7 @@ const Post = ({ post }) => {
     const fetchData = async () => {
       if (user._id != post.userId) {
         const poster = await axios.get(
-          `http://localhost:8800/api/users?userId=${post.userId}`
+          `${import.meta.env.VITE_BACKEND_LINK}/users?userId=${post.userId}`
         );
         setPoster(poster.data);
       } else {
@@ -31,7 +31,9 @@ const Post = ({ post }) => {
       }
 
       const likes = await (
-        await axios.get(`http://localhost:8800/api/posts/${post._id}`)
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}`
+        )
       ).data.likes;
       setLike(likes.length);
     };
@@ -48,43 +50,59 @@ const Post = ({ post }) => {
     if (action == "like") {
       // retrieve liks
       const likes = await (
-        await axios.get(`http://localhost:8800/api/posts/${post._id}`)
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}`
+        )
       ).data.likes;
 
       // check if likes include the client user. If so, the user un-likes the post.
       if (!likes.includes(user._id)) {
         isLiked = false;
         setLike(like + 1);
-        await axios.put(`http://localhost:8800/api/posts/${post._id}/like`, {
-          userId: user._id,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}/like`,
+          {
+            userId: user._id,
+          }
+        );
       } else {
         // if not, then the user likes the post
         isLiked = true;
         setLike(like - 1);
-        await axios.put(`http://localhost:8800/api/posts/${post._id}/like`, {
-          userId: user._id,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}/like`,
+          {
+            userId: user._id,
+          }
+        );
       }
     } else if (action == "dislike") {
       const dislikes = await (
-        await axios.get(`http://localhost:8800/api/posts/${post._id}`)
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}`
+        )
       ).data.dislikes;
 
       if (!dislikes.includes(user._id)) {
         isDisliked = false;
         dislike += 1;
-        await axios.put(`http://localhost:8800/api/posts/${post._id}/dislike`, {
-          userId: user._id,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}/dislike`,
+          {
+            userId: user._id,
+          }
+        );
 
         // setIsDisliked(true)
       } else {
         isDisliked = true;
         dislike -= 1;
-        await axios.put(`http://localhost:8800/api/posts/${post._id}/dislike`, {
-          userId: user._id,
-        });
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_LINK}/posts/${post._id}/dislike`,
+          {
+            userId: user._id,
+          }
+        );
       }
     }
   };

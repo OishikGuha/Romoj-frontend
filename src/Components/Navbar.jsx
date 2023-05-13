@@ -21,7 +21,10 @@ const Navbar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios
-      .get("http://localhost:8800/api/users?username=" + search.current.value)
+      .get(
+        `${import.meta.env.VITE_BACKEND_LINK}/users?username=` +
+          search.current.value
+      )
       .then((res) => {
         navigate("/profile/" + res.data.username);
       });

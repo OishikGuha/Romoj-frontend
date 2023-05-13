@@ -14,7 +14,7 @@ const ProfileMain = ({ username }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `http://localhost:8800/api/users?username=${username}`
+        `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
       );
       setUser(res.data);
     };
@@ -22,7 +22,9 @@ const ProfileMain = ({ username }) => {
 
     const fetchFollowing = async () => {
       return await (
-        await axios.get(`http://localhost:8800/api/users?username=${username}`)
+        await axios.get(
+          `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
+        )
       ).data;
     };
     fetchFollowing().then((f) =>
@@ -52,13 +54,15 @@ const ProfileMain = ({ username }) => {
 
   const handleFollow = async () => {
     const following = await (
-      await axios.get(`http://localhost:8800/api/users?username=${username}`)
+      await axios.get(
+        `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
+      )
     ).data;
 
     if (following.followers.includes(currentUser._id)) {
       setFollow(false);
       await axios.put(
-        `http://localhost:8800/api/users/${following._id}/unfollow`,
+        `${import.meta.env.VITE_BACKEND_LINK}/users/${following._id}/unfollow`,
         {
           userId: currentUser._id,
         }
@@ -67,7 +71,7 @@ const ProfileMain = ({ username }) => {
     } else {
       setFollow(true);
       await axios.put(
-        `http://localhost:8800/api/users/${following._id}/follow`,
+        `${import.meta.env.VITE_BACKEND_LINK}/users/${following._id}/follow`,
         {
           userId: currentUser._id,
         }

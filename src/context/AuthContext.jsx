@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
     const fetchUserUpdate = async (user) => {
       console.log(user.username);
       return await axios.get(
-        "http://localhost:8800/api/users?username=" + user.username
+        `${import.meta.env.VITE_BACKEND_LINK}/users?username=` + user.username
       );
     };
     fetchUserUpdate(user2).then((f) => {

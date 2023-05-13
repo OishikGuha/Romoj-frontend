@@ -23,11 +23,11 @@ const PostInput = ({ update }) => {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        await axios.post("http://localhost:8800/api/upload", data);
+        await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/upload`, data);
       } catch (err) {}
     }
     try {
-      await axios.post("http://localhost:8800/api/posts", newPost);
+      await axios.post(`${import.meta.env.VITE_BACKEND_LINK}/posts`, newPost);
       update();
     } catch (err) {}
   };
