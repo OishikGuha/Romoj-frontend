@@ -59,8 +59,12 @@ app.use("/api/users", userRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/posts", postRoute)
 
-app.get("/", (req,res)=>{res.send("welcome to homepage")})
-app.get("/users", (req,res)=>{res.send("welcome to user page")})
+app.get("/", (req,res)=>{
+  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+
+  res.send("welcome to homepage")})
+app.get("/users", (req,res)=>{  res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+res.send("welcome to user page")})
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
