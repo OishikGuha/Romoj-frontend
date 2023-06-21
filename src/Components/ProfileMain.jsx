@@ -13,18 +13,14 @@ const ProfileMain = ({ username }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
-      );
+      const res = await axios.get(`/api/users?username=${username}`);
       setUser(res.data);
     };
     fetchUser();
 
     const fetchFollowing = async () => {
       return await (
-        await axios.get(
-          `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
-        )
+        await axios.get(`/api/users?username=${username}`)
       ).data;
     };
     fetchFollowing().then((f) =>
@@ -54,28 +50,20 @@ const ProfileMain = ({ username }) => {
 
   const handleFollow = async () => {
     const following = await (
-      await axios.get(
-        `${import.meta.env.VITE_BACKEND_LINK}/users?username=${username}`
-      )
+      await axios.get(`/api/users?username=${username}`)
     ).data;
 
     if (following.followers.includes(currentUser._id)) {
       setFollow(false);
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_LINK}/users/${following._id}/unfollow`,
-        {
-          userId: currentUser._id,
-        }
-      );
+      await axios.put(`/api/users/${following._id}/unfollow`, {
+        userId: currentUser._id,
+      });
       window.location.reload();
     } else {
       setFollow(true);
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_LINK}/users/${following._id}/follow`,
-        {
-          userId: currentUser._id,
-        }
-      );
+      await axios.put(`/api/users/${following._id}/follow`, {
+        userId: currentUser._id,
+      });
       window.location.reload();
     }
   };

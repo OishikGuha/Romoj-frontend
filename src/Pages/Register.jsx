@@ -27,10 +27,7 @@ const Register = () => {
       };
 
       try {
-        await axios.post(
-          `${import.meta.env.VITE_BACKEND_LINK}/auth/register`,
-          user
-        );
+        await axios.post(`/api/auth/register`, user);
         navigate("/login");
       } catch (err) {
         console.log(err);

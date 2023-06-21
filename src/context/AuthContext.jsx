@@ -17,9 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   if (user2) {
     const fetchUserUpdate = async (user) => {
       console.log(user.username);
-      return await axios.get(
-        `${import.meta.env.VITE_BACKEND_LINK}/users?username=` + user.username
-      );
+      return await axios.get(`/api/users?username=` + user.username);
     };
     fetchUserUpdate(user2).then((f) => {
       user2 = f.data;

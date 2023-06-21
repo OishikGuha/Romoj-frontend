@@ -19,12 +19,8 @@ const Feed = ({ username, onlyUser }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = onlyUser
-        ? await axios.get(
-            `${import.meta.env.VITE_BACKEND_LINK}/posts/profile/${username}`
-          )
-        : await axios.get(
-            `${import.meta.env.VITE_BACKEND_LINK}/posts/allPosts/all`
-          );
+        ? await axios.get(`/api/posts/profile/${username}`)
+        : await axios.get(`/api/posts/allPosts/all`);
       // console.log(res.data);
       setPosts(res.data.reverse());
       // console.log(posts[0]);

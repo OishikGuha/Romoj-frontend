@@ -10,9 +10,7 @@ const Friend = ({ userId }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_LINK}/users?userId=${userId}`
-      );
+      const res = await axios.get(`/api/users?userId=${userId}`);
       setUser(res.data);
     };
     fetchUser();
