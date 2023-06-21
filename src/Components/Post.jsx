@@ -22,15 +22,13 @@ const Post = ({ post }) => {
   useEffect(() => {
     const fetchData = async () => {
       if (user._id != post.userId) {
-        const poster = await axios.get(`/api/users?userId=${post.userId}`);
+        const poster = await fetch(`/api/users?userId=${post.userId}`);
         setPoster(poster.data);
       } else {
         setPoster(user);
       }
 
-      const likes = await (
-        await axios.get(`/api/posts/${post._id}`)
-      ).data.likes;
+      const likes = await (await fetch(`/api/posts/${post._id}`)).data.likes;
       setLike(likes.length);
     };
     fetchData();
@@ -45,44 +43,58 @@ const Post = ({ post }) => {
   const handleLike = async (action) => {
     if (action == "like") {
       // retrieve liks
-      const likes = await (
-        await axios.get(`/api/posts/${post._id}`)
-      ).data.likes;
+      const likes = await (await fetch(`/api/posts/${post._id}`)).data.likes;
 
       // check if likes include the client user. If so, the user un-likes the post.
       if (!likes.includes(user._id)) {
         isLiked = false;
         setLike(like + 1);
-        await axios.put(`/api/posts/${post._id}/like`, {
-          userId: user._id,
-        });
+        await fetch(
+          `/api/posts/${post._id}/like`,
+          {
+            userId: user._id,
+          },
+          { method: "PUT" }
+        );
       } else {
         // if not, then the user likes the post
         isLiked = true;
         setLike(like - 1);
-        await axios.put(`/api/posts/${post._id}/like`, {
-          userId: user._id,
-        });
+        await fetch(
+          `/api/posts/${post._id}/like`,
+          {
+            userId: user._id,
+          },
+          { method: "PUT" }
+        );
       }
     } else if (action == "dislike") {
       const dislikes = await (
-        await axios.get(`/api/posts/${post._id}`)
+        await fetch(`/api/posts/${post._id}`)
       ).data.dislikes;
 
       if (!dislikes.includes(user._id)) {
         isDisliked = false;
         dislike += 1;
-        await axios.put(`/api/posts/${post._id}/dislike`, {
-          userId: user._id,
-        });
+        await fetch(
+          `/api/posts/${post._id}/dislike`,
+          {
+            userId: user._id,
+          },
+          { method: "PUT" }
+        );
 
         // setIsDisliked(true)
       } else {
         isDisliked = true;
         dislike -= 1;
-        await axios.put(`/api/posts/${post._id}/dislike`, {
-          userId: user._id,
-        });
+        await fetch(
+          `/api/posts/${post._id}/dislike`,
+          {
+            userId: user._id,
+          },
+          { method: "PUT" }
+        );
       }
     }
   };

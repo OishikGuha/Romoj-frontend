@@ -27,7 +27,7 @@ const Register = () => {
       };
 
       try {
-        await axios.post(`/api/auth/register`, user);
+        await fetch(`/api/auth/register`, { method: "PUT", body: user });
         navigate("/login");
       } catch (err) {
         console.log(err);

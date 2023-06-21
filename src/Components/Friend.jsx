@@ -10,7 +10,7 @@ const Friend = ({ userId }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/api/users?userId=${userId}`);
+      const res = await fetch(`/api/users?userId=${userId}`);
       setUser(res.data);
     };
     fetchUser();

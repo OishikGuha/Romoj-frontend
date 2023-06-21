@@ -23,11 +23,11 @@ const PostInput = ({ update }) => {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        await axios.post(`/api/upload`, data);
+        await fetch(`/api/upload`, { method: "PUT", body: data });
       } catch (err) {}
     }
     try {
-      await axios.post(`/api/posts`, newPost);
+      await fetch(`/api/posts`, { method: "PUT", body: newPost });
       update();
     } catch (err) {}
   };
